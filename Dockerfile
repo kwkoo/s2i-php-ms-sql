@@ -9,8 +9,7 @@ LABEL \
 
 USER root
 
-COPY 30-pdo_sqlsrv.ini /etc/opt/rh/rh-php73/php.d/
-COPY 30-sqlsrv.ini /etc/opt/rh/rh-php73/php.d/
+COPY *.ini /etc/opt/rh/rh-php73/php.d/
 
 # This is only necessary if we are on the UBI-based image
 #RUN rpm -i http://mirror.centos.org/centos/7/os/x86_64/Packages/e2fsprogs-1.42.9-17.el7.x86_64.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/e2fsprogs-libs-1.42.9-17.el7.x86_64.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/libss-1.42.9-17.el7.x86_64.rpm
@@ -25,6 +24,8 @@ RUN \
   curl -L -o driver.tar https://github.com/microsoft/msphpsql/releases/download/v5.8.0/CentOS7-7.3.tar \
   && \
   tar -xf driver.tar \
+  && \
+  rm driver.tar \
   && \
   cd CentOS7-7.3 \
   && \
